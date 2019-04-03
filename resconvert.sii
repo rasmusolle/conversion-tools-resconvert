@@ -1,0 +1,258 @@
+SiiNunit {
+	config : config {
+		rulelists[]: .map_rule
+		rulelists[]: .pix_rule
+		rulelists[]: .raw_rule
+		rulelists[]: .tobj_rule
+		rulelists[]: .txt_rule
+
+		blacklists[]: .std_black
+	}
+
+
+	# -------------------------------------------------------------------------
+	# RULELISTS
+	# -------------------------------------------------------------------------
+	# Rulelist name:	Map rulelist
+	# Rulelist descr:	Move map files to the destination.
+	rulelist : .map_rule {
+		elements[]: .aux_copy
+		elements[]: .base_copy
+		elements[]: .data_copy
+		elements[]: .desc_copy
+		elements[]: .mbd_copy
+		elements[]: .sbd_copy
+	}
+	rule : .aux_copy {
+		prefix: "/map/"
+		src_extension: ".aux"
+		dst_extension: ".aux"
+		converter: "rescopy"
+	}
+	rule : .base_copy {
+		prefix: "/map/"
+		src_extension: ".base"
+		dst_extension: ".base"
+		converter: "rescopy"
+	}
+	rule : .data_copy {
+		prefix: "/map/"
+		src_extension: ".data"
+		dst_extension: ".data"
+		converter: "rescopy"
+	}
+	rule : .desc_copy {
+		prefix: "/map/"
+		src_extension: ".desc"
+		dst_extension: ".desc"
+		converter: "rescopy"
+	}
+	rule : .mbd_copy {
+		prefix: "/map/"
+		src_extension: ".mbd"
+		dst_extension: ".mbd"
+		converter: "rescopy"
+	}
+	rule : .sbd_copy {
+		prefix: "/map/"
+		src_extension: ".sbd"
+		dst_extension: ".sbd"
+		converter: "rescopy"
+	}
+	# -------------------------------------------------------------------------
+	# Rulelist name:	Pix rulelist
+	# Rulelist descr:	Compile model files to binary formats for the game.
+	rulelist : .pix_rule {
+		elements[]: .pia2pma
+		elements[]: .pim2pmg
+		elements[]: .pip2ppd
+		elements[]: .pit2pmc
+		elements[]: .pit2pmd
+	}
+	rule : .pia2pma {
+		src_extension: ".pia"
+		dst_extension: ".pma"
+		converter: "pia2pma"
+	}
+	rule : .pim2pmg {
+		src_extension: ".pim"
+		dst_extension: ".pmg"
+		converter: "pim2pmg"
+		options: "%s -tangent -merge_part_pieces -optimize_for_vertex_cache"
+	}
+	rule : .pip2ppd {
+		src_extension: ".pip"
+		dst_extension: ".ppd"
+		converter: "pip2ppd"
+	}
+	rule : .pit2pmc {
+		src_extension: ".pic"
+		dst_extension: ".pmc"
+		converter: "pit2pmc"
+	}
+	rule : .pit2pmd {
+		src_extension: ".pit"
+		dst_extension: ".pmd"
+		converter: "pit2pmd"
+	}
+	# -------------------------------------------------------------------------
+	# Rulelist name:	Raw rulelist
+	# Rulelist descr:	Misc raw files that should simply be copied.
+	rulelist : .raw_rule {
+		elements[]: .dds_copy
+		elements[]: .jpg_copy
+		elements[]: .ogg_copy
+		elements[]: .txt_copy
+	}
+	rule : .dds_copy {
+		src_extension: ".dds"
+		dst_extension: ".dds"
+		converter: "rescopy"
+	}
+	rule : .jpg_copy {
+		src_extension: ".jpg"
+		dst_extension: ".jpg"
+		converter: "rescopy"
+	}
+	rule : .ogg_copy {
+		src_extension: ".ogg"
+		dst_extension: ".ogg"
+		converter: "rescopy"
+	}
+	rule : .txt_copy {
+		src_extension: ".txt"
+		dst_extension: ".txt"
+		converter: "rescopy"
+	}
+	# -------------------------------------------------------------------------
+	# Rulelist name:	TOBJ rulelist
+	# Rulelist descr:	Rulelists related to any TOBJ files.
+	rulelist : .tobj_rule {
+		elements[]: .tobjcopy
+	}
+	rule : .tobjcopy {
+		src_extension: ".tobj"
+		dst_extension: ".tobj"
+		converter: "tobjcopy"
+	}
+	# -------------------------------------------------------------------------
+	# Rulelist name:	Text rulelist
+	# Rulelist descr:	Text files for the game engine.
+	rulelist : .txt_rule {
+		elements[]: .dat_copy
+		elements[]: .font_copy
+		elements[]: .mat_copy
+		elements[]: .sii_copy
+		elements[]: .sui_copy
+	}
+	rule : .dat_copy {
+		src_extension: ".dat"
+		dst_extension: ".dat"
+		converter: "textcopy"
+	}
+	rule : .font_copy {
+		src_extension: ".font"
+		dst_extension: ".font"
+		converter: "textcopy"
+	}
+	rule : .mat_copy {
+		src_extension: ".mat"
+		dst_extension: ".mat"
+		converter: "textcopy"
+	}
+	rule : .sii_copy {
+		src_extension: ".sii"
+		dst_extension: ".sii"
+		converter: "textcopy"
+	}
+	rule : .sui_copy {
+		src_extension: ".sui"
+		dst_extension: ".sui"
+		converter: "textcopy"
+	}
+	# -------------------------------------------------------------------------
+
+
+	# -------------------------------------------------------------------------
+	# BLACKLISTS
+	# -------------------------------------------------------------------------
+	# Blacklist name:	Standard blacklist
+	# Blacklist descr:	Standard blacklist
+	blacklist : .std_black {
+		elements[]: .black.manifest
+		elements[]: .black.material.db
+		elements[]: .black.material.environment.vehicle.reflection
+		elements[]: .black.material.environment.generic.reflection
+		elements[]: .black.material.environment.interior.reflection
+		elements[]: .black.material.environment.close.mirror.reflection
+		elements[]: .black.material.environment.close_s.mirror.reflection
+		elements[]: .black.material.environment.far.mirror.reflection
+		elements[]: .black.material.environment.far_s.mirror.reflection
+		elements[]: .black.material.environment.front.mirror.reflection
+		elements[]: .black.material.environment.side.mirror.reflection
+		elements[]: .black.material.environment.hood.mirror.reflection
+		elements[]: .black.vehicle.truck.share.dashboard
+		elements[]: .black.vehicle.truck.share.license.plate
+		elements[]: .black.vehicle.truck.share.gps
+	}
+	black : .black.manifest {
+		pattern: "/manifest/"
+		prefix: true
+	}
+	black : .black.material.db {
+		pattern: "/material/material.db"
+		exact: true
+	}
+	black : .black.material.environment.vehicle.reflection {
+		pattern: "/material/environment/vehicle_reflection."
+		prefix: true
+	}
+	black : .black.material.environment.generic.reflection {
+		pattern: "/material/environment/generic_reflection."
+		prefix: true
+	}
+	black : .black.material.environment.interior.reflection {
+		pattern: "/material/environment/interior_reflection."
+		prefix: true
+	}
+	black : .black.material.environment.close.mirror.reflection {
+		pattern: "/material/environment/close_mirror_reflection."
+		prefix: true
+	}
+	black : .black.material.environment.close_s.mirror.reflection {
+		pattern: "/material/environment/close_s_mirror_reflection."
+		prefix: true
+	}
+	black : .black.material.environment.far.mirror.reflection {
+		pattern: "/material/environment/far_mirror_reflection."
+		prefix: true
+	}
+	black : .black.material.environment.far_s.mirror.reflection {
+		pattern: "/material/environment/far_s_mirror_reflection."
+		prefix: true
+	}
+	black : .black.material.environment.front.mirror.reflection {
+		pattern: "/material/environment/front_mirror_reflection."
+		prefix: true
+	}
+	black : .black.material.environment.side.mirror.reflection {
+		pattern: "/material/environment/side_mirror_reflection."
+		prefix: true
+	}
+	black : .black.material.environment.hood.mirror.reflection {
+		pattern: "/material/environment/hood_mirror_reflection."
+		prefix: true
+	}
+	black : .black.vehicle.truck.share.dashboard {
+		pattern: "/vehicle/truck/share/dashboard."
+		prefix: true
+	}
+	black : .black.vehicle.truck.share.gps {
+		pattern: "/vehicle/truck/share/gps."
+		prefix: true
+	}
+	black : .black.vehicle.truck.share.license.plate {
+		pattern: "/vehicle/truck/share/license_plate."
+		prefix: true
+	}
+}

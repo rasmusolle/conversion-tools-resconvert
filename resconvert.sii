@@ -100,13 +100,20 @@ SiiNunit {
 	# Rulelist descr:	Misc raw files that should simply be copied.
 	rulelist : .raw_rule {
 		elements[]: .dds_copy
+		elements[]: .dmd_copy
 		elements[]: .jpg_copy
 		elements[]: .ogg_copy
+		elements[]: .ogv_copy
 		elements[]: .txt_copy
 	}
 	rule : .dds_copy {
 		src_extension: ".dds"
 		dst_extension: ".dds"
+		converter: "rescopy"
+	}
+	rule : .dmd_copy {
+		src_extension: ".dmd"
+		dst_extension: ".dmd"
 		converter: "rescopy"
 	}
 	rule : .jpg_copy {
@@ -117,6 +124,11 @@ SiiNunit {
 	rule : .ogg_copy {
 		src_extension: ".ogg"
 		dst_extension: ".ogg"
+		converter: "rescopy"
+	}
+	rule : .ogv_copy {
+		src_extension: ".ogv"
+		dst_extension: ".ogv"
 		converter: "rescopy"
 	}
 	rule : .txt_copy {

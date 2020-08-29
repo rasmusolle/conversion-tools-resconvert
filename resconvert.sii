@@ -99,12 +99,19 @@ SiiNunit {
 	# Rulelist name:	Raw rulelist
 	# Rulelist descr:	Misc raw files that should simply be copied.
 	rulelist : .raw_rule {
+		elements[]: .bank_copy
 		elements[]: .dds_copy
 		elements[]: .dmd_copy
 		elements[]: .jpg_copy
+		elements[]: .mask_copy
 		elements[]: .ogg_copy
 		elements[]: .ogv_copy
 		elements[]: .txt_copy
+	}
+	rule : .bank_copy {
+		src_extension: ".bank"
+		dst_extension: ".bank"
+		converter: "rescopy"
 	}
 	rule : .dds_copy {
 		src_extension: ".dds"
@@ -119,6 +126,11 @@ SiiNunit {
 	rule : .jpg_copy {
 		src_extension: ".jpg"
 		dst_extension: ".jpg"
+		converter: "rescopy"
+	}
+	rule : .mask_copy {
+		src_extension: ".mask"
+		dst_extension: ".mask"
 		converter: "rescopy"
 	}
 	rule : .ogg_copy {
@@ -136,6 +148,7 @@ SiiNunit {
 		dst_extension: ".txt"
 		converter: "rescopy"
 	}
+
 	# -------------------------------------------------------------------------
 	# Rulelist name:	TOBJ rulelist
 	# Rulelist descr:	Rulelists related to any TOBJ files.
@@ -153,8 +166,10 @@ SiiNunit {
 	rulelist : .txt_rule {
 		elements[]: .dat_copy
 		elements[]: .font_copy
+		elements[]: .guids_copy
 		elements[]: .mat_copy
 		elements[]: .sii_copy
+		elements[]: .sndref_copy
 		elements[]: .sui_copy
 	}
 	rule : .dat_copy {
@@ -167,6 +182,11 @@ SiiNunit {
 		dst_extension: ".font"
 		converter: "textcopy"
 	}
+	rule : .guids_copy {
+		src_extension: ".guids"
+		dst_extension: ".guids"
+		converter: "textcopy"
+	}
 	rule : .mat_copy {
 		src_extension: ".mat"
 		dst_extension: ".mat"
@@ -175,6 +195,11 @@ SiiNunit {
 	rule : .sii_copy {
 		src_extension: ".sii"
 		dst_extension: ".sii"
+		converter: "textcopy"
+	}
+	rule : .sndref_copy {
+		src_extension: ".soundref"
+		dst_extension: ".soundref"
 		converter: "textcopy"
 	}
 	rule : .sui_copy {
